@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>幾何學的基本概念 (Chapter 5.1)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- KaTeX CSS & JS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderAllMath()"></script>
+
+  <style>
+    body {
+      font-family: "Times New Roman", Times, "Noto Sans TC", serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .grid-bg {
+      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- Header Section -->
+  <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div>
+          <h1 class="text-xl sm:text-2xl font-bold tracking-tight">中一數學：幾何學的基本概念</h1>
+          <p class="text-xs sm:text-sm text-indigo-200">Chapter 5.1 互動學習與自主探究平台</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-indigo-950 px-4 border-t border-indigo-800">
+      <div class="max-w-7xl mx-auto flex gap-1 sm:gap-2 overflow-x-auto no-scrollbar text-xs sm:text-sm font-medium py-1.5">
+        <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn px-3 py-2 rounded-md whitespace-nowrap transition-colors bg-indigo-600 text-white">
+          1. 點、線、面
+        </button>
+        <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn px-3 py-2 rounded-md whitespace-nowrap transition-colors text-indigo-200 hover:text-white hover:bg-indigo-800/50">
+          2. 角與命名
+        </button>
+        <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn px-3 py-2 rounded-md whitespace-nowrap transition-colors text-indigo-200 hover:text-white hover:bg-indigo-800/50">
+          3. 餘角與補角
+        </button>
+        <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn px-3 py-2 rounded-md whitespace-nowrap transition-colors text-indigo-200 hover:text-white hover:bg-indigo-800/50">
+          4. 平行與垂直
+        </button>
+        <button onclick="switchTab('tab5')" id="btn-tab5" class="tab-btn px-3 py-2 rounded-md whitespace-nowrap transition-colors text-indigo-200 hover:text-white hover:bg-indigo-800/50">
+          5. 課堂互動測試
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+
+    <!-- TAB 1: 點、線、面 -->
+    <section id="tab1" class="tab-content space-y-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h2 class="text-xl font-bold text-slate-800 border-b border-slate-200 pb-2 flex items-center gap-2">
+          <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+          幾何學的三要素：點、線、面 (Points, Lines, Surfaces)
+        </h2>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed">
+          幾何學主要研究形狀、大小與空間位置關係。其最基本的組成元素為<b>點 (Point)</b>、<b>線 (Line)</b> 及 <b>面 (Surface)</b>。
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+          <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <h3 class="font-bold text-indigo-900 border-b pb-1 text-base">一、點 (Point)</h3>
+            <ul class="mt-2 space-y-2 text-sm text-slate-700">
+              <li>• 代表空間中的<b>位置</b>。</li>
+              <li>• <b>沒有大小</b>、沒有長度、沒有面積。</li>
+              <li>• 通常以黑點或小叉「$\times$」表示，並以大寫英文字母命名（如點 $A$、點 $B$）。</li>
+            </ul>
+            <div class="mt-4 flex justify-center items-center h-28 bg-white rounded border border-slate-200">
+              <svg width="200" height="80" class="w-full h-full">
+                <circle cx="60" cy="40" r="4" fill="#1e40af" />
+                <text x="55" y="25" font-family="Times New Roman" font-size="16" font-style="italic" fill="#1e40af">A</text>
+                
+                <line x1="135" y1="35" x2="145" y2="45" stroke="#b91c1c" stroke-width="2"/>
+                <line x1="145" y1="35" x2="135" y2="45" stroke="#b91c1c" stroke-width="2"/>
+                <text x="135" y="25" font-family="Times New Roman" font-size="16" font-style="italic" fill="#b91c1c">B</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <h3 class="font-bold text-indigo-900 border-b pb-1 text-base">二、線 (Line) 與線段</h3>
+            <ul class="mt-2 space-y-2 text-sm text-slate-700">
+              <li>• 由<b>無限個點</b>連續排列而成，<b>沒有闊度</b>。</li>
+              <li>• <b>直線 (Straight Line)</b>：向兩端無限延伸。</li>
+              <li>• <b>線段 (Line Segment)</b>：直線上兩點之間的有限部分，具有<b>固定長度</b>（如 $PQ = 7\text{ cm}$）。</li>
+              <li>• <b>交點 (Point of Intersection)</b>：兩線相交的位置。</li>
+            </ul>
+          </div>
+
+          <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <h3 class="font-bold text-indigo-900 border-b pb-1 text-base">三、面 (Surface)</h3>
+            <ul class="mt-2 space-y-2 text-sm text-slate-700">
+              <li>• 物體的表面，<b>沒有厚度</b>。</li>
+              <li>• <b>平面 (Plane / Flat Surface)</b>：平坦伸展的面，例如黑板面、桌面、長方形盒子的側面。</li>
+              <li>• <b>曲面 (Curved Surface)</b>：彎曲的面，例如籃球表面、圓柱體側壁。</li>
+              <li>• <b>面與面的交線</b>：兩平面相交形成<b>直線</b>；曲面與平面相交可形成<b>曲線</b>。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 class="text-lg font-bold text-indigo-950 flex items-center gap-2">
+          <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
+          動態探究一：通過兩點的直線與曲線
+        </h3>
+        <p class="text-sm text-slate-600 mt-1">
+          點擊下方控制按鈕，觀察通過固定點 $A$ 與點 $B$ 能繪畫出多少條直線與曲線。
+        </p>
+
+        <div class="mt-4 flex flex-wrap gap-3">
+          <button onclick="toggleStraightLine()" id="btn-line" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-all shadow-sm">
+            顯示通過 A、B 的直線
+          </button>
+          <button onclick="addCurvedLine()" id="btn-curve" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-all shadow-sm">
+            增加通過 A、B 的曲線
+          </button>
+          <button onclick="resetTab1SVG()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-sm font-medium rounded-lg transition-all">
+            重設圖板
+          </button>
+        </div>
+
+        <div class="mt-4 border border-slate-300 rounded-lg bg-slate-50 grid-bg overflow-hidden relative">
+          <svg id="svg-tab1" class="w-full h-64 sm:h-80" viewBox="0 0 600 300"></svg>
+        </div>
+
+        <div id="tab1-status" class="mt-3 p-3 bg-amber-50 border border-amber-200 text-amber-900 rounded-lg text-sm font-medium">
+          💡 幾何公理探究：<b>通過任何兩個已知點，只可以繪畫出【 1 條 】直線；但可以繪畫出【 無限條 】曲線。</b>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h3 class="text-lg font-bold text-indigo-950 flex items-center gap-2">
+          <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          動態探究二：平面、曲面與交線 (Surfaces & Intersections)
+        </h3>
+        <p class="text-sm text-slate-600 mt-1">
+          點擊下方選項切換不同的幾何面模型，觀察「平面」、「曲面」以及兩面相交所形成的「交線」。
+        </p>
+
+        <div class="mt-4 flex flex-wrap gap-2">
+          <button onclick="renderSurfaceMode('plane')" id="btn-surf-plane" class="surf-mode-btn px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg transition-all shadow-sm">
+            1. 平面 (Flat Plane)
+          </button>
+          <button onclick="renderSurfaceMode('curved')" id="btn-surf-curved" class="surf-mode-btn px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition-all">
+            2. 曲面 (Curved Surface)
+          </button>
+          <button onclick="renderSurfaceMode('plane-plane')" id="btn-surf-pp" class="surf-mode-btn px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition-all">
+            3. 兩平面相交 (交線為直線)
+          </button>
+          <button onclick="renderSurfaceMode('plane-cylinder')" id="btn-surf-pc" class="surf-mode-btn px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition-all">
+            4. 平面與曲面相交 (交線為曲線)
+          </button>
+        </div>
+
+        <div class="mt-4 border border-slate-300 rounded-lg bg-slate-50 overflow-hidden relative">
+          <svg id="svg-surface" class="w-full h-64 sm:h-80" viewBox="0 0 600 300"></svg>
+        </div>
+
+        <div id="surface-status" class="mt-3 p-3 bg-indigo-50 border border-indigo-200 text-indigo-900 rounded-lg text-sm font-medium">
+          💡 <b>平面 (Plane)</b>：平坦向四周無限延伸的表面。
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: 角 (Angles) -->
+    <section id="tab2" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h2 class="text-xl font-bold text-slate-800 border-b border-slate-200 pb-2 flex items-center gap-2">
+          <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+          角及其命名與六大類別 (Angles & Classification)
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+          <div class="space-y-4">
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+              <h3 class="font-bold text-indigo-900 text-base">1. 角的結構與三字母命名法</h3>
+              <p class="text-sm text-slate-700 mt-2 leading-relaxed">
+                當兩條射線由同一個端點交匯時，便形成一個<b>角 (Angle)</b>。
+              </p>
+              <ul class="list-disc list-inside text-sm text-slate-700 mt-2 space-y-1">
+                <li><b>頂點 (Vertex)</b>：兩邊的公共端點（如點 $B$）。</li>
+                <li><b>邊 (Arm)</b>：構成角的兩條射線（如 $BA$ 與 $BC$）。</li>
+              </ul>
+              
+              <div class="mt-3 p-2.5 bg-rose-50 border border-rose-200 text-rose-900 rounded text-xs leading-relaxed">
+                <span class="font-bold text-rose-700">⚠️ 常犯錯誤與警告：</span><br>
+                當頂點 $B$ 處同時有多個角相交時（例如同時有 $\angle ABC$ 與 $\angle DBC$），<b>絕對不能單稱為「$\angle B$」</b>，否則會引起混淆！必須使用三個字母標示，並確保<b>頂點字母寫在中間</b>，如 $\angle ABC$ 或 $\angle CBA$。
+              </div>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+              <h3 class="font-bold text-indigo-900 text-base">2. 分數角計算 (Fractional Angles)</h3>
+              <p class="text-sm text-slate-700 mt-2 leading-relaxed">
+                利用平角 ($180^\circ$) 與周角 ($360^\circ$) 計算特定分數的角：
+              </p>
+              <ul class="text-sm text-slate-800 mt-2 space-y-2 bg-white p-3 rounded border border-slate-200 font-mono">
+                <li>• $\frac{2}{3} \text{ 個平角} = \frac{2}{3} \times 180^\circ = 120^\circ \quad \text{(鈍角)}$</li>
+                <li>• $\frac{4}{9} \text{ 個周角} = \frac{4}{9} \times 360^\circ = 160^\circ \quad \text{(鈍角)}$</li>
+                <li>• $\frac{3}{4} \text{ 個周角} = \frac{3}{4} \times 360^\circ = 270^\circ \quad \text{(反角/優角)}$</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-indigo-950 text-base flex justify-between items-center">
+                <span>動態旋轉角畫板</span>
+                <span id="angle-type-badge" class="px-2.5 py-1 text-xs rounded-full font-bold bg-indigo-600 text-white">銳角 Acute</span>
+              </h3>
+
+              <div class="mt-4 space-y-2">
+                <div class="flex justify-between items-center text-sm">
+                  <label for="angle-slider" class="font-medium text-slate-700">旋轉角度 $\theta$：</label>
+                  <span id="angle-value-display" class="font-bold text-lg text-indigo-700 font-mono">45°</span>
+                </div>
+                <input type="range" id="angle-slider" min="0" max="360" value="45" step="1" oninput="updateAngleCanvas(this.value)" class="w-full h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                  <span>0°</span><span>90°</span><span>180°</span><span>270°</span><span>360°</span>
+                </div>
+              </div>
+
+              <div class="mt-4 bg-white border border-slate-300 rounded-lg flex justify-center items-center h-56 relative overflow-hidden">
+                <svg id="svg-angle" class="w-full h-full" viewBox="-150 -150 300 300"></svg>
+              </div>
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-[11px] text-center font-medium">
+              <div id="cat-acute" class="p-1.5 rounded border border-slate-200 bg-white">銳角 $0^\circ < \theta < 90^\circ$</div>
+              <div id="cat-right" class="p-1.5 rounded border border-slate-200 bg-white">直角 $\theta = 90^\circ$</div>
+              <div id="cat-obtuse" class="p-1.5 rounded border border-slate-200 bg-white">鈍角 $90^\circ < \theta < 180^\circ$</div>
+              <div id="cat-straight" class="p-1.5 rounded border border-slate-200 bg-white">平角 $\theta = 180^\circ$</div>
+              <div id="cat-reflex" class="p-1.5 rounded border border-slate-200 bg-white">反角 $180^\circ < \theta < 360^\circ$</div>
+              <div id="cat-round" class="p-1.5 rounded border border-slate-200 bg-white">周角 $\theta = 360^\circ$</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: 餘角與補角 -->
+    <section id="tab3" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h2 class="text-xl font-bold text-slate-800 border-b border-slate-200 pb-2 flex items-center gap-2">
+          <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">3</span>
+          餘角與補角 (Complementary & Supplementary Angles)
+        </h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+          <!-- Complementary Section -->
+          <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="border-b pb-2">
+                <h3 class="font-bold text-indigo-900 text-base">一、餘角 (Complementary Angles)</h3>
+                <p class="text-xs text-slate-600 mt-1">
+                  若兩角之和等於 <b>$90^\circ$（直角）</b>，這兩角稱為<b>互為餘角（互餘）</b>。
+                </p>
+              </div>
+
+              <div class="mt-4 space-y-2">
+                <div class="flex justify-between items-center text-sm">
+                  <label for="comp-slider" class="font-medium text-slate-700">調整 $a$：</label>
+                  <span id="comp-a-val" class="font-bold text-indigo-700 font-mono">35°</span>
+                </div>
+                <input type="range" id="comp-slider" min="1" max="89" value="35" oninput="updateCompCanvas(this.value)" class="w-full h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+              </div>
+
+              <div class="mt-4 bg-white border border-slate-300 rounded-lg flex justify-center items-center h-48 overflow-hidden">
+                <svg id="svg-comp" class="w-full h-full" viewBox="0 0 250 200"></svg>
+              </div>
+            </div>
+
+            <div id="comp-math-formula" class="mt-4 p-3 bg-indigo-50 border border-indigo-200 rounded text-xs text-indigo-900 leading-relaxed font-sans">
+              <!-- Dynamically populated math formula -->
+            </div>
+          </div>
+
+          <!-- Supplementary Section -->
+          <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="border-b pb-2">
+                <h3 class="font-bold text-indigo-900 text-base">二、補角 (Supplementary Angles)</h3>
+                <p class="text-xs text-slate-600 mt-1">
+                  若兩角之和等於 <b>$180^\circ$（平角/直線）</b>，這兩角稱為<b>互為補角（互補）</b>。
+                </p>
+              </div>
+
+              <div class="mt-4 space-y-2">
+                <div class="flex justify-between items-center text-sm">
+                  <label for="supp-slider" class="font-medium text-slate-700">調整 $a$：</label>
+                  <span id="supp-a-val" class="font-bold text-emerald-700 font-mono">115°</span>
+                </div>
+                <input type="range" id="supp-slider" min="1" max="179" value="115" oninput="updateSuppCanvas(this.value)" class="w-full h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+              </div>
+
+              <div class="mt-4 bg-white border border-slate-300 rounded-lg flex justify-center items-center h-48 overflow-hidden">
+                <svg id="svg-supp" class="w-full h-full" viewBox="0 0 300 180"></svg>
+              </div>
+            </div>
+
+            <div id="supp-math-formula" class="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded text-xs text-emerald-900 leading-relaxed font-sans">
+              <!-- Dynamically populated math formula -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: 平行與垂直 -->
+    <section id="tab4" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h2 class="text-xl font-bold text-slate-800 border-b border-slate-200 pb-2 flex items-center gap-2">
+          <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">4</span>
+          平行線與垂直線 (Parallel & Perpendicular Lines)
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-indigo-900 text-lg flex items-center justify-between border-b pb-2">
+                <span>平行線 (Parallel Lines)</span>
+                <span class="text-indigo-600 font-mono font-bold">$AB // CD$</span>
+              </h3>
+              <ul class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+                <li>• 在同一平面內，兩條<b>無限延長而永不相交</b>的直線。</li>
+                <li>• 兩線之間的<b>垂直距離處處相等</b>。</li>
+                <li>• 符號：使用「$//$」表示（例：$AB // CD$）。</li>
+                <li>• 圖形標記：在線段上繪畫<b>相同方向的箭號（$\gg$）</b>。</li>
+              </ul>
+
+              <div class="mt-4 bg-white border border-slate-300 rounded-lg p-3 flex justify-center items-center h-44">
+                <svg width="280" height="120" viewBox="0 0 280 120">
+                  <line x1="30" y1="35" x2="250" y2="35" stroke="#1e40af" stroke-width="2.5" />
+                  <polygon points="135,30 145,35 135,40" fill="#1e40af" />
+                  <polygon points="145,30 155,35 145,40" fill="#1e40af" />
+                  <circle cx="40" cy="35" r="3" fill="#1e40af"/>
+                  <text x="35" y="25" font-family="Times New Roman" font-style="italic" class="text-xs">A</text>
+                  <circle cx="240" cy="35" r="3" fill="#1e40af"/>
+                  <text x="240" y="25" font-family="Times New Roman" font-style="italic" class="text-xs">B</text>
+
+                  <line x1="30" y1="85" x2="250" y2="85" stroke="#1e40af" stroke-width="2.5" />
+                  <polygon points="135,80 145,85 135,90" fill="#1e40af" />
+                  <polygon points="145,80 155,85 145,90" fill="#1e40af" />
+                  <circle cx="40" cy="85" r="3" fill="#1e40af"/>
+                  <text x="35" y="105" font-family="Times New Roman" font-style="italic" class="text-xs">C</text>
+                  <circle cx="240" cy="85" r="3" fill="#1e40af"/>
+                  <text x="240" y="105" font-family="Times New Roman" font-style="italic" class="text-xs">D</text>
+                </svg>
+              </div>
+            </div>
+
+            <div class="mt-4 p-2.5 bg-white border border-slate-200 rounded text-xs text-slate-600">
+              <b>日常生活中例子：</b>斑馬線、琴弦、火車軌道、競賽跑道。
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-indigo-900 text-lg flex items-center justify-between border-b pb-2">
+                <span>垂直線 (Perpendicular Lines)</span>
+                <span class="text-indigo-600 font-mono font-bold">$AB \perp CD$</span>
+              </h3>
+              <ul class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+                <li>• 兩條直線相交，且形成的夾角為<b>直角 ($90^\circ$)</b>。</li>
+                <li>• 兩線的交點稱為<b>垂足 (Foot of Perpendicular)</b>。</li>
+                <li>• 符號：使用「$\perp$」表示（例：$AB \perp CD$）。</li>
+                <li>• 圖形標記：在相交交點處畫上<b>方角符號（$\llcorner$）</b>。</li>
+              </ul>
+
+              <div class="mt-4 bg-white border border-slate-300 rounded-lg p-3 flex justify-center items-center h-44">
+                <svg width="280" height="130" viewBox="0 0 280 130">
+                  <line x1="30" y1="90" x2="250" y2="90" stroke="#047857" stroke-width="2.5" />
+                  <text x="25" y="110" font-family="Times New Roman" font-style="italic" class="text-xs">C</text>
+                  <text x="250" y="110" font-family="Times New Roman" font-style="italic" class="text-xs">D</text>
+
+                  <line x1="140" y1="15" x2="140" y2="90" stroke="#047857" stroke-width="2.5" />
+                  <text x="145" y="20" font-family="Times New Roman" font-style="italic" class="text-xs">A</text>
+                  
+                  <circle cx="140" cy="90" r="3.5" fill="#b91c1c"/>
+                  <text x="148" y="110" font-family="Times New Roman" font-style="italic" fill="#b91c1c" class="text-xs font-bold">B (垂足 Foot)</text>
+
+                  <path d="M 140 75 L 155 75 L 155 90" fill="none" stroke="#b91c1c" stroke-width="1.5" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="mt-4 p-2.5 bg-white border border-slate-200 rounded text-xs text-slate-600">
+              <b>日常生活中例子：</b>門框的相交邊、十字路口、紅十字標誌、書本牆角。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: 課堂互動測試 -->
+    <section id="tab5" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 pb-4 gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+              <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">5</span>
+              課堂互動小測試（全章綜合隨堂演練）
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">全卷共 7 題，計時器將在您切換至此分頁或填寫資料時自動開始計算，提交後將顯示用時、答對題數及詳解！</p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div id="live-timer" class="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg text-xs font-mono font-bold border border-slate-300">
+              ⏱️ 用時：00:00
+            </div>
+            <button onclick="resetQuiz()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-lg transition-all">
+              重設所有題目
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-4 p-4 bg-indigo-50/60 border border-indigo-100 rounded-lg">
+          <h3 class="text-xs font-bold text-indigo-900 uppercase tracking-wider mb-2 flex items-center gap-1">
+            <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            學生個人資料與 Google Sheet 紀錄連結
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1">姓名：</label>
+              <input type="text" id="student-name" placeholder="例如：張小明" class="w-full px-3 py-1.5 text-sm bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1">班別：</label>
+              <input type="text" id="student-class" placeholder="例如：1A" class="w-full px-3 py-1.5 text-sm bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1">學號：</label>
+              <input type="number" id="student-number" placeholder="例如：15" class="w-full px-3 py-1.5 text-sm bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+          </div>
+
+          <div class="mt-3 pt-3 border-t border-indigo-100 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+            <input type="url" id="google-sheet-url" value="https://script.google.com/macros/s/AKfycby_90hfG9XfMdenoW4JBjQ4QyB-_mU30HMSOWaPE4u-k-d43TY9flDU6XaDpoTyFTso9Q/exec" placeholder="輸入 Google Apps Script Web App URL (選填)" class="flex-grow px-3 py-1.5 text-xs bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            <button onclick="submitAllAnswers()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded shadow transition-all whitespace-nowrap">
+              🚀 提交作答紀錄並自動解鎖答案
+            </button>
+          </div>
+          <div id="submit-status" class="hidden mt-2 text-xs font-medium text-slate-600"></div>
+        </div>
+
+        <div class="mt-6 space-y-8">
+          
+          <!-- Q1 -->
+          <div class="question-card p-4 rounded-lg border border-slate-200 bg-slate-50/50" id="q1-box">
+            <p class="font-bold text-slate-800 text-sm sm:text-base">
+              Q1. （單選）通過平面上兩個不同的已知點 $A$ 和 $B$，可以繪畫出多少條【直線】？
+            </p>
+            <div class="mt-3 space-y-2 text-sm text-slate-700">
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q1" value="A"> A. 0 條</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q1" value="B"> B. 有且僅有 1 條</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q1" value="C"> C. 2 條</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q1" value="D"> D. 無限條</label>
+            </div>
+            <div id="sol-q1" class="hidden mt-3 p-3 bg-white border rounded text-xs leading-relaxed"></div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="question-card p-4 rounded-lg border border-slate-200 bg-slate-50/50" id="q2-box">
+            <p class="font-bold text-slate-800 text-sm sm:text-base">
+              Q2. （單選）若角度 $\theta = 210^\circ$，該角屬於以下哪一種幾何分類？
+            </p>
+            <div class="mt-3 space-y-2 text-sm text-slate-700">
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q2" value="A"> A. 鈍角 (Obtuse Angle)</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q2" value="B"> B. 平角 (Straight Angle)</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q2" value="C"> C. 反角 / 優角 (Reflex Angle)</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q2" value="D"> D. 周角 (Round Angle)</label>
+            </div>
+            <div id="sol-q2" class="hidden mt-3 p-3 bg-white border rounded text-xs leading-relaxed"></div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="question-card p-4 rounded-lg border border-slate-200 bg-slate-50/50" id="q3-box">
+            <p class="font-bold text-slate-800 text-sm sm:text-base">
+              Q3. （單選）已知 $\angle A$ 與 $\angle B$ 互為【餘角】。若 $\angle A = 35^\circ$，求 $\angle B$ 的大小。
+            </p>
+            <div class="mt-3 space-y-2 text-sm text-slate-700">
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q3" value="A"> A. $55^\circ$</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q3" value="B"> B. $65^\circ$</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q3" value="C"> C. $145^\circ$</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q3" value="D"> D. $155^\circ$</label>
+            </div>
+            <div id="sol-q3" class="hidden mt-3 p-3 bg-white border rounded text-xs leading-relaxed"></div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="question-card p-4 rounded-lg border border-slate-200 bg-slate-50/50" id="q4-box">
+            <p class="font-bold text-slate-800 text-sm sm:text-base">
+              Q4. （單選）已知 $\angle X$ 與 $\angle Y$ 互為【補角】。若 $\angle X = 115^\circ$，求 $\angle Y$ 的大小。
+            </p>
+            <div class="mt-3 space-y-2 text-sm text-slate-700">
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q4" value="A"> A. $25^\circ$</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q4" value="B"> B. $65^\circ$</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q4" value="C"> C. $75^\circ$</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q4" value="D"> D. $245^\circ$</label>
+            </div>
+            <div id="sol-q4" class="hidden mt-3 p-3 bg-white border rounded text-xs leading-relaxed"></div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="question-card p-4 rounded-lg border border-slate-200 bg-slate-50/50" id="q5-box">
+            <p class="font-bold text-slate-800 text-sm sm:text-base">
+              Q5. （填空計算）計算 $\frac{2}{3}$ 個【平角】的大小是多少度？
+            </p>
+            <div class="mt-3 flex items-center gap-2">
+              <input type="number" id="q5-input" placeholder="請輸入角度數字（如 120）" class="border border-slate-300 rounded px-3 py-1.5 w-60 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <span class="text-sm font-bold text-slate-700">度 ($^\circ$)</span>
+            </div>
+            <div id="sol-q5" class="hidden mt-3 p-3 bg-white border rounded text-xs leading-relaxed"></div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="question-card p-4 rounded-lg border border-slate-200 bg-slate-50/50" id="q6-box">
+            <p class="font-bold text-slate-800 text-sm sm:text-base">
+              Q6. （單選）兩條直線互相垂直相交，其相交的交點稱為以下何者？
+            </p>
+            <div class="mt-3 space-y-2 text-sm text-slate-700">
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q6" value="A"> A. 頂點 (Vertex)</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q6" value="B"> B. 垂足 (Foot of Perpendicular)</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q6" value="C"> C. 中點 (Midpoint)</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q6" value="D"> D. 原點 (Origin)</label>
+            </div>
+            <div id="sol-q6" class="hidden mt-3 p-3 bg-white border rounded text-xs leading-relaxed"></div>
+          </div>
+
+          <!-- Q7 -->
+          <div class="question-card p-4 rounded-lg border border-slate-200 bg-slate-50/50" id="q7-box">
+            <p class="font-bold text-slate-800 text-sm sm:text-base">
+              Q7. （單選）下列哪一個符號用作表示直線 $AB$ 與直線 $CD$ 【互相平行】？
+            </p>
+            <div class="mt-3 space-y-2 text-sm text-slate-700">
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q7" value="A"> A. $AB \perp CD$</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q7" value="B"> B. $AB = CD$</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q7" value="C"> C. $AB // CD$</label>
+              <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q7" value="D"> D. $AB \cong CD$</label>
+            </div>
+            <div id="sol-q7" class="hidden mt-3 p-3 bg-white border rounded text-xs leading-relaxed"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 text-center text-xs py-4 border-t border-slate-800">
+    <p>中一數學《幾何學的基本概念 (Chapter 5.1)》課堂互動教學 App © 2026</p>
+  </footer>
+
+  <!-- Javascript Logic -->
+  <script>
+    function renderAllMath(element) {
+      if (window.renderMathInElement) {
+        renderMathInElement(element || document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    let tab1StraightLineVisible = false;
+    let tab1CurveCount = 0;
+    
+    // Quiz Timer tracking variables
+    let quizStartTime = null;
+    let quizTimerInterval = null;
+    let secondsElapsed = 0;
+    let quizSubmitted = false;
+
+    window.onload = function() {
+      resetTab1SVG();
+      renderSurfaceMode('plane');
+      updateAngleCanvas(45);
+      updateCompCanvas(35);
+      updateSuppCanvas(115);
+      renderAllMath();
+      startQuizTimer();
+    };
+
+    function startQuizTimer() {
+      if (!quizStartTime) {
+        quizStartTime = new Date();
+        quizTimerInterval = setInterval(() => {
+          if (!quizSubmitted) {
+            secondsElapsed++;
+            const mins = Math.floor(secondsElapsed / 60).toString().padStart(2, '0');
+            const secs = (secondsElapsed % 60).toString().padStart(2, '0');
+            const timerEl = document.getElementById('live-timer');
+            if (timerEl) {
+              timerEl.innerText = `⏱️ 用時：${mins}:${secs}`;
+            }
+          }
+        }, 1000);
+      }
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white');
+        btn.classList.add('text-indigo-200', 'hover:text-white', 'hover:bg-indigo-800/50');
+      });
+
+      const activeBtn = document.getElementById('btn-' + tabId);
+      activeBtn.classList.remove('text-indigo-200', 'hover:text-white', 'hover:bg-indigo-800/50');
+      activeBtn.classList.add('bg-indigo-600', 'text-white');
+
+      if (tabId === 'tab5') {
+        startQuizTimer();
+      }
+
+      renderAllMath(document.getElementById(tabId));
+    }
+
+    function resetTab1SVG() {
+      tab1StraightLineVisible = false;
+      tab1CurveCount = 0;
+      renderTab1SVG();
+    }
+
+    function toggleStraightLine() {
+      tab1StraightLineVisible = !tab1StraightLineVisible;
+      renderTab1SVG();
+    }
+
+    function addCurvedLine() {
+      tab1CurveCount++;
+      renderTab1SVG();
+    }
+
+    function renderTab1SVG() {
+      const svg = document.getElementById('svg-tab1');
+      const ax = 150, ay = 150;
+      const bx = 450, by = 150;
+
+      let html = '';
+
+      if (tab1StraightLineVisible) {
+        html += `<line x1="50" y1="150" x2="550" y2="150" stroke="#1e40af" stroke-width="3" stroke-dasharray="0"/>`;
+        html += `<text x="510" y="140" fill="#1e40af" font-size="12" font-weight="bold">直線 Straight Line</text>`;
+      }
+
+      const curveColors = ['#059669', '#d97706', '#7c3aed', '#db2777', '#0284c7'];
+      for (let i = 1; i <= tab1CurveCount; i++) {
+        const offset = (i % 2 === 1) ? (Math.ceil(i/2) * 45) : -(Math.ceil(i/2) * 45);
+        const color = curveColors[(i - 1) % curveColors.length];
+        const controlY = 150 + offset;
+        html += `<path d="M ${ax} ${ay} Q 300 ${controlY} ${bx} ${by}" fill="none" stroke="${color}" stroke-width="2"/>`;
+      }
+
+      html += `
+        <circle cx="${ax}" cy="${ay}" r="6" fill="#1e293b"/>
+        <text x="${ax - 8}" y="${ay - 15}" font-family="Times New Roman" font-size="20" font-style="italic" font-weight="bold" fill="#1e293b">A</text>
+        <circle cx="${bx}" cy="${by}" r="6" fill="#1e293b"/>
+        <text x="${bx - 8}" y="${by - 15}" font-family="Times New Roman" font-size="20" font-style="italic" font-weight="bold" fill="#1e293b">B</text>
+      `;
+
+      svg.innerHTML = html;
+
+      const status = document.getElementById('tab1-status');
+      status.innerHTML = `💡 目前統計：通過點 $A$ 與點 $B$ 的直線共有 <b>${tab1StraightLineVisible ? 1 : 0}</b> 條；曲線共有 <b>${tab1CurveCount}</b> 條。`;
+      renderAllMath(status);
+    }
+
+    function renderSurfaceMode(mode) {
+      const svg = document.getElementById('svg-surface');
+      const status = document.getElementById('surface-status');
+
+      document.querySelectorAll('.surf-mode-btn').forEach(btn => {
+        btn.className = 'surf-mode-btn px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition-all';
+      });
+
+      let html = '';
+      let statusText = '';
+
+      if (mode === 'plane') {
+        document.getElementById('btn-surf-plane').className = 'surf-mode-btn px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg transition-all shadow-sm';
+        statusText = '💡 <b>平面 (Plane)</b>：向四周平坦延伸的雙維度面，沒有厚度。例如平整的桌面、鏡面。';
+        html = `
+          <polygon points="150,80 450,80 380,220 80,220" fill="#3b82f6" fill-opacity="0.15" stroke="#2563eb" stroke-width="2.5" />
+          <line x1="80" y1="220" x2="380" y2="220" stroke="#1d4ed8" stroke-width="3"/>
+          <text x="240" y="155" fill="#1e40af" font-size="16" font-weight="bold">平面 (Flat Surface)</text>
+          <text x="160" y="100" fill="#64748b" font-size="12" font-style="italic">向四周無限延伸</text>
+        `;
+      } else if (mode === 'curved') {
+        document.getElementById('btn-surf-curved').className = 'surf-mode-btn px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg transition-all shadow-sm';
+        statusText = '💡 <b>曲面 (Curved Surface)</b>：彎曲光滑的表面。例如圓柱體側面、球體表面。';
+        html = `
+          <path d="M 200 80 C 200 40, 400 40, 400 80 L 400 220 C 400 260, 200 260, 200 220 Z" fill="#10b981" fill-opacity="0.15" stroke="#059669" stroke-width="2.5"/>
+          <ellipse cx="300" cy="80" rx="100" ry="20" fill="#a7f3d0" fill-opacity="0.4" stroke="#059669" stroke-width="2"/>
+          <path d="M 200 220 C 200 240, 400 240, 400 220" fill="none" stroke="#059669" stroke-width="2.5"/>
+          <path d="M 200 220 C 200 200, 400 200, 400 220" fill="none" stroke="#059669" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <text x="245" y="160" fill="#047857" font-size="16" font-weight="bold">曲面 (Curved Surface)</text>
+        `;
+      } else if (mode === 'plane-plane') {
+        document.getElementById('btn-surf-pp').className = 'surf-mode-btn px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg transition-all shadow-sm';
+        statusText = '💡 幾何規律：<b>兩平面相交 (Intersection of Two Planes)</b>，其交點會組成一條<b>【直線 (Straight Line)】</b>。';
+        html = `
+          <defs>
+            <linearGradient id="plane1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.2"/>
+            </linearGradient>
+            <linearGradient id="plane2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#6d28d9" stop-opacity="0.2"/>
+            </linearGradient>
+          </defs>
+          <polygon points="120,150 480,150 400,90 40,90" fill="url(#plane1-grad)" stroke="#2563eb" stroke-width="1.5"/>
+          <polygon points="200,40 380,40 330,150 150,150" fill="url(#plane2-grad)" stroke="#7c3aed" stroke-width="1.5"/>
+          <line x1="150" y1="150" x2="330" y2="150" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/>
+          <polygon points="120,150 480,150 400,220 40,220" fill="url(#plane1-grad)" stroke="#2563eb" stroke-width="1.5"/>
+          <polygon points="150,150 330,150 280,260 100,260" fill="url(#plane2-grad)" stroke="#7c3aed" stroke-width="1.5"/>
+          <text x="50" y="200" fill="#1e40af" font-size="14" font-weight="bold">平面 P₁</text>
+          <text x="350" y="65" fill="#6d28d9" font-size="14" font-weight="bold">平面 P₂</text>
+          <text x="345" y="155" fill="#dc2626" font-size="14" font-weight="bold">相交線 (直線 L)</text>
+          <circle cx="150" cy="150" r="3" fill="#dc2626"/>
+          <circle cx="330" cy="150" r="3" fill="#dc2626"/>
+        `;
+      } else if (mode === 'plane-cylinder') {
+        document.getElementById('btn-surf-pc').className = 'surf-mode-btn px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg transition-all shadow-sm';
+        statusText = '💡 幾何規律：<b>平面與曲面相交 (Plane Intersects Curved Surface)</b>，其交線通常為一條<b>【曲線 (Curved Line / Circle)】</b>。';
+        html = `
+          <path d="M 220 60 L 220 240 A 80 20 0 0 0 380 240 L 380 60 Z" fill="#64748b" fill-opacity="0.1" stroke="#475569" stroke-width="2"/>
+          <ellipse cx="300" cy="60" rx="80" ry="20" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+          <polygon points="120,130 460,130 400,180 60,180" fill="#ec4899" fill-opacity="0.25" stroke="#db2777" stroke-width="2"/>
+          <ellipse cx="300" cy="150" rx="80" ry="18" fill="none" stroke="#dc2626" stroke-width="3.5"/>
+          <text x="390" y="145" fill="#b91c1c" font-size="14" font-weight="bold">相交線：曲線</text>
+          <text x="80" y="170" fill="#be185d" font-size="12" font-weight="bold">切割平面</text>
+        `;
+      }
+
+      svg.innerHTML = html;
+      status.innerHTML = statusText;
+      renderAllMath(svg);
+      renderAllMath(status);
+    }
+
+    function updateAngleCanvas(val) {
+      const theta = parseFloat(val);
+      document.getElementById('angle-value-display').innerText = theta + '°';
+
+      const svg = document.getElementById('svg-angle');
+      const badge = document.getElementById('angle-type-badge');
+
+      const cats = ['cat-acute', 'cat-right', 'cat-obtuse', 'cat-straight', 'cat-reflex', 'cat-round'];
+      cats.forEach(c => document.getElementById(c).className = 'p-1.5 rounded border border-slate-200 bg-white');
+
+      let typeName = '', badgeColor = 'bg-indigo-600', activeCat = '';
+
+      if (theta === 0) {
+        typeName = '零角 Zero Angle'; badgeColor = 'bg-slate-600';
+      } else if (theta > 0 && theta < 90) {
+        typeName = '銳角 Acute Angle'; badgeColor = 'bg-indigo-600'; activeCat = 'cat-acute';
+      } else if (theta === 90) {
+        typeName = '直角 Right Angle'; badgeColor = 'bg-emerald-600'; activeCat = 'cat-right';
+      } else if (theta > 90 && theta < 180) {
+        typeName = '鈍角 Obtuse Angle'; badgeColor = 'bg-amber-600'; activeCat = 'cat-obtuse';
+      } else if (theta === 180) {
+        typeName = '平角 Straight Angle'; badgeColor = 'bg-purple-600'; activeCat = 'cat-straight';
+      } else if (theta > 180 && theta < 360) {
+        typeName = '反角/優角 Reflex Angle'; badgeColor = 'bg-rose-600'; activeCat = 'cat-reflex';
+      } else if (theta === 360) {
+        typeName = '周角 Round Angle'; badgeColor = 'bg-cyan-600'; activeCat = 'cat-round';
+      }
+
+      badge.innerText = typeName;
+      badge.className = `px-2.5 py-1 text-xs rounded-full font-bold text-white ${badgeColor}`;
+      if (activeCat) {
+        document.getElementById(activeCat).className = 'p-1.5 rounded border border-indigo-500 bg-indigo-50 font-bold text-indigo-900';
+      }
+
+      const rad = (theta * Math.PI) / 180;
+      const r = 90;
+      const x2 = r * Math.cos(-rad);
+      const y2 = r * Math.sin(-rad);
+
+      let arcPath = '';
+      if (theta > 0) {
+        const largeArc = theta > 180 ? 1 : 0;
+        const arcR = 30;
+        const ax = arcR * Math.cos(-rad);
+        const ay = arcR * Math.sin(-rad);
+        arcPath = `<path d="M ${arcR} 0 A ${arcR} ${arcR} 0 ${largeArc} 0 ${ax} ${ay}" fill="none" stroke="#dc2626" stroke-width="2"/>`;
+      }
+
+      let rightAngleSquare = '';
+      if (theta === 90) {
+        rightAngleSquare = `<path d="M 0 -18 L 18 -18 L 18 0" fill="none" stroke="#059669" stroke-width="2"/>`;
+      }
+
+      svg.innerHTML = `
+        <line x1="0" y1="0" x2="110" y2="0" stroke="#1e293b" stroke-width="3"/>
+        <text x="115" y="5" font-family="Times New Roman" font-style="italic" font-size="14" fill="#1e293b">C</text>
+
+        <line x1="0" y1="0" x2="${x2*1.2}" y2="${y2*1.3}" stroke="#1e40af" stroke-width="3"/>
+        <text x="${x2*1.3}" y="${y2*1.3 + 5}" font-family="Times New Roman" font-style="italic" font-size="14" fill="#1e40af">A</text>
+
+        ${arcPath}
+        ${rightAngleSquare}
+
+        <circle cx="0" cy="0" r="4" fill="#b91c1c"/>
+        <text x="-15" y="15" font-family="Times New Roman" font-style="italic" font-size="14" font-weight="bold" fill="#b91c1c">B</text>
+      `;
+    }
+
+    function updateCompCanvas(val) {
+      const a = parseInt(val);
+      const b = 90 - a;
+
+      document.getElementById('comp-a-val').innerText = a + '°';
+
+      const radA = (a * Math.PI) / 180;
+      const r = 120;
+      const x = 50 + r * Math.cos(-radA);
+      const y = 160 + r * Math.sin(-radA);
+
+      const svg = document.getElementById('svg-comp');
+      svg.innerHTML = `
+        <line x1="50" y1="160" x2="200" y2="160" stroke="#334155" stroke-width="2.5"/>
+        <line x1="50" y1="160" x2="50" y2="20" stroke="#334155" stroke-width="2.5"/>
+        <line x1="50" y1="160" x2="${x}" y2="${y}" stroke="#2563eb" stroke-width="2.5"/>
+
+        <path d="M 50 145 L 65 145 L 65 160" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2 2"/>
+
+        <text x="100" y="150" font-size="12" fill="#2563eb" font-weight="bold">a (${a}°)</text>
+        <text x="58" y="100" font-size="12" fill="#059669" font-weight="bold">b (${b}°)</text>
+        <circle cx="50" cy="160" r="3.5" fill="#1e293b"/>
+        <text x="35" y="175" font-family="Times New Roman" font-style="italic" font-size="12">O</text>
+      `;
+
+      const mathBox = document.getElementById('comp-math-formula');
+      if (mathBox) {
+        mathBox.innerHTML = `公式：$a + b = 90^\\circ$<br>目前：$a = ${a}^\\circ, \\quad b = 90^\\circ - ${a}^\\circ = \\mathbf{${b}^\\circ}$`;
+        renderAllMath(mathBox);
+      }
+    }
+
+    function updateSuppCanvas(val) {
+      const a = parseInt(val);
+      const b = 180 - a;
+
+      document.getElementById('supp-a-val').innerText = a + '°';
+
+      const radA = (a * Math.PI) / 180;
+      const r = 100;
+      const x = 150 + r * Math.cos(-radA);
+      const y = 140 + r * Math.sin(-radA);
+
+      const svg = document.getElementById('svg-supp');
+      svg.innerHTML = `
+        <line x1="30" y1="140" x2="270" y2="140" stroke="#334155" stroke-width="2.5"/>
+        <line x1="150" y1="140" x2="${x}" y2="${y}" stroke="#059669" stroke-width="2.5"/>
+
+        <text x="170" y="120" font-size="12" fill="#059669" font-weight="bold">a (${a}°)</text>
+        <text x="80" y="120" font-size="12" fill="#d97706" font-weight="bold">b (${b}°)</text>
+        <circle cx="150" cy="140" r="3.5" fill="#1e293b"/>
+        <text x="145" y="160" font-family="Times New Roman" font-style="italic" font-size="12">O</text>
+      `;
+
+      const mathBox = document.getElementById('supp-math-formula');
+      if (mathBox) {
+        mathBox.innerHTML = `公式：$a + b = 180^\\circ$<br>目前：$a = ${a}^\\circ, \\quad b = 180^\\circ - ${a}^\\circ = \\mathbf{${b}^\\circ}$`;
+        renderAllMath(mathBox);
+      }
+    }
+
+    const answers = {
+      q1: { correct: 'B', exp: '<b>正確答案：B</b><br>解析：幾何公理指出，通過任何兩個已知點，只可以繪畫出<b>有且僅有 1 條</b>直線（但可以繪畫無限條曲線）。' },
+      q2: { correct: 'C', exp: '<b>正確答案：C</b><br>解析：由於 $180^\circ < 210^\circ < 360^\circ$，因此該角屬於<b>反角 / 優角 (Reflex Angle)</b>。' },
+      q3: { correct: 'A', exp: '<b>正確答案：A</b><br>解析：互餘角的兩角之和為 $90^\circ$。<br>$\angle B = 90^\circ - 35^\circ = 55^\circ$。' },
+      q4: { correct: 'B', exp: '<b>正確答案: B</b><br>解析：互補角的兩角之和為 $180^\circ$。<br>$\angle Y = 180^\circ - 115^\circ = 65^\circ$。' },
+      q5: { correct: 120, exp: '<b>正確答案：120°</b><br>解析：平角的大小為 $180^\circ$。<br>$\frac{2}{3} \text{ 個平角} = \frac{2}{3} \times 180^\circ = 120^\circ$。' },
+      q6: { correct: 'B', exp: '<b>正確答案：B</b><br>解析：兩條垂直線相交時，其交點稱為<b>垂足 (Foot of Perpendicular)</b>。' },
+      q7: { correct: 'C', exp: '<b>正確答案：C</b><br>解析：符號「$//$」代表平行，因此 $AB // CD$ 表示直線 $AB$ 與 $CD$ 互相平行。（「$\perp$」代表垂直）。' }
+    };
+
+    function resetQuiz() {
+      ['q1', 'q2', 'q3', 'q4', 'q6', 'q7'].forEach(q => {
+        const radios = document.querySelectorAll(`input[name="${q}"]`);
+        radios.forEach(r => r.checked = false);
+      });
+      const q5Input = document.getElementById('q5-input');
+      if (q5Input) q5Input.value = '';
+      const nameInput = document.getElementById('student-name');
+      if (nameInput) nameInput.value = '';
+      const classInput = document.getElementById('student-class');
+      if (classInput) classInput.value = '';
+      const numInput = document.getElementById('student-number');
+      if (numInput) numInput.value = '';
+
+      for (let i = 1; i <= 7; i++) {
+        const card = document.getElementById(`q${i}-box`);
+        const sol = document.getElementById(`sol-q${i}`);
+        if (card) card.className = 'question-card p-4 rounded-lg border border-slate-200 bg-slate-50/50';
+        if (sol) {
+          sol.classList.add('hidden');
+          sol.innerHTML = '';
+        }
+      }
+      const statusDiv = document.getElementById('submit-status');
+      if (statusDiv) statusDiv.classList.add('hidden');
+      
+      quizSubmitted = false;
+      secondsElapsed = 0;
+      quizStartTime = new Date();
+    }
+
+    function submitAllAnswers() {
+      const name = document.getElementById('student-name').value.trim();
+      const sClass = document.getElementById('student-class').value.trim();
+      const num = document.getElementById('student-number').value.trim();
+      const webAppUrl = document.getElementById('google-sheet-url').value.trim();
+      const statusDiv = document.getElementById('submit-status');
+
+      if (!name || !sClass || !num) {
+        statusDiv.classList.remove('hidden');
+        statusDiv.className = "mt-2 p-2 bg-rose-50 border border-rose-300 text-rose-900 text-xs rounded font-medium";
+        statusDiv.innerText = "⚠️ 請先填寫完整的學生個人資料（姓名、班別、學號）方可提交與解鎖答案！";
+        return;
+      }
+
+      quizSubmitted = true;
+      if (quizTimerInterval) clearInterval(quizTimerInterval);
+
+      const mins = Math.floor(secondsElapsed / 60);
+      const secs = secondsElapsed % 60;
+      const timeSpentStr = `${mins}分 ${secs}秒 (${secondsElapsed}秒)`;
+
+      const q1Val = document.querySelector('input[name="q1"]:checked')?.value || '未答';
+      const q2Val = document.querySelector('input[name="q2"]:checked')?.value || '未答';
+      const q3Val = document.querySelector('input[name="q3"]:checked')?.value || '未答';
+      const q4Val = document.querySelector('input[name="q4"]:checked')?.value || '未答';
+      const q5Val = document.getElementById('q5-input').value.trim() || '未答';
+      const q6Val = document.querySelector('input[name="q6"]:checked')?.value || '未答';
+      const q7Val = document.querySelector('input[name="q7"]:checked')?.value || '未答';
+
+      // Automatically evaluate and count correct answers for Q1 - Q7
+      let correctCount = 0;
+      if (q1Val === answers.q1.correct) correctCount++;
+      if (q2Val === answers.q2.correct) correctCount++;
+      if (q3Val === answers.q3.correct) correctCount++;
+      if (q4Val === answers.q4.correct) correctCount++;
+      if (parseInt(q5Val) === answers.q5.correct) correctCount++;
+      if (q6Val === answers.q6.correct) correctCount++;
+      if (q7Val === answers.q7.correct) correctCount++;
+
+      const totalScoreStr = `${correctCount} / 7`;
+
+      const recordData = {
+        timestamp: new Date().toLocaleString(),
+        name: name,
+        class: sClass,
+        number: num,
+        answers: { q1: q1Val, q2: q2Val, q3: q3Val, q4: q4Val, q5: q5Val, q6: q6Val, q7: q7Val },
+        totalScore: totalScoreStr,
+        timeSpent: timeSpentStr
+      };
+
+      // Display evaluation and detailed solution boxes for all 7 questions
+      evaluateQuestion('q1', q1Val);
+      evaluateQuestion('q2', q2Val);
+      evaluateQuestion('q3', q3Val);
+      evaluateQuestion('q4', q4Val);
+      evaluateQuestion('q5', parseInt(q5Val));
+      evaluateQuestion('q6', q6Val);
+      evaluateQuestion('q7', q7Val);
+
+      statusDiv.classList.remove('hidden');
+
+      if (!webAppUrl) {
+        statusDiv.className = "mt-2 p-2 bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs rounded font-medium";
+        statusDiv.innerHTML = `✅ <b>提交成功！</b> 總用時：<b>${timeSpentStr}</b> | 總答對題數：<b class="text-indigo-700">${totalScoreStr}</b>。已成功解鎖所有答案。`;
+        return;
+      }
+
+      statusDiv.className = "mt-2 p-2 bg-blue-50 border border-blue-300 text-blue-900 text-xs rounded font-medium";
+      statusDiv.innerText = `⏳ 總用時 ${timeSpentStr}，答對 ${totalScoreStr}。正在傳送至 Google Sheet...`;
+
+      fetch(webAppUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(recordData)
+      })
+      .then(() => {
+        statusDiv.className = "mt-2 p-2 bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs rounded font-medium";
+        statusDiv.innerHTML = `✅ <b>提交成功！</b> 總用時：<b>${timeSpentStr}</b> | 總答對題數：<b class="text-indigo-700">${totalScoreStr}</b>。已記錄至 Google Sheet 並解鎖全部答案！`;
+      })
+      .catch(err => {
+        statusDiv.className = "mt-2 p-2 bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs rounded font-medium";
+        statusDiv.innerHTML = `✅ <b>本地解鎖成功！</b> 總用時：<b>${timeSpentStr}</b> | 總答對題數：<b class="text-indigo-700">${totalScoreStr}</b>。`;
+      });
+    }
+
+    function evaluateQuestion(qKey, userVal) {
+      const card = document.getElementById(`${qKey}-box`);
+      const sol = document.getElementById(`sol-${qKey}`);
+      sol.classList.remove('hidden');
+
+      let isCorrect = false;
+      if (qKey === 'q5') {
+        if (userVal === answers.q5.correct) isCorrect = true;
+      } else {
+        if (userVal === answers[qKey].correct) isCorrect = true;
+      }
+
+      if (isCorrect) {
+        card.className = 'question-card p-4 rounded-lg border-2 border-emerald-500 bg-emerald-50/40';
+        sol.className = 'mt-3 p-3 bg-emerald-100/80 text-emerald-900 border border-emerald-300 rounded text-xs leading-relaxed';
+        sol.innerHTML = `✅ <b>回答正確！</b><br>${answers[qKey].exp}`;
+      } else {
+        card.className = 'question-card p-4 rounded-lg border-2 border-rose-500 bg-rose-50/40';
+        sol.className = 'mt-3 p-3 bg-rose-100/80 text-rose-900 border border-rose-300 rounded text-xs leading-relaxed';
+        sol.innerHTML = `❌ <b>回答錯誤 / 尚未作答</b><br>${answers[qKey].exp}`;
+      }
+
+      renderAllMath(sol);
+    }
+  </script>
+</body>
+</html>
